@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 
-public class WorkerRequest implements Serializable {
+public class WorkerResponse implements Serializable {
 	 
 
 	private static final long serialVersionUID = 1L;
@@ -14,7 +14,7 @@ public class WorkerRequest implements Serializable {
 	private String name;
 	private Double dailyIncome; 
 	
-	public WorkerRequest() {}
+	public WorkerResponse() {}
 
 	public Long getId() {
 		return id;
@@ -53,7 +53,7 @@ public class WorkerRequest implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		WorkerRequest other = (WorkerRequest) obj;
+		WorkerResponse other = (WorkerResponse) obj;
 		return Objects.equals(id, other.id);
 	}
 	

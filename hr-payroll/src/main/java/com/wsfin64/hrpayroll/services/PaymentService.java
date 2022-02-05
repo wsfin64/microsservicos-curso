@@ -10,25 +10,19 @@ import org.springframework.web.client.RestTemplate;
 
 import com.wsfin64.hrpayroll.entities.Payment;
 
-import com.wsfin64.hrpayroll.entities.WorkerRequest;
+import com.wsfin64.hrpayroll.entities.WorkerResponse;
+import com.wsfin64.hrpayroll.feignclients.WorkerFeignClient;
 
 @Service
 public class PaymentService {
-	
-	@Value("${hr-worker.host}")
-	private String workerHost;
 
 	@Autowired
-	private RestTemplate restTemplate;
+	private WorkerFeignClient workerClient;
 	
 	public Payment getPayment(long workerId, int days) {
 		
-		// Mapa de variaveis
-		Map<String, String> uriVariables = new HashMap<>();
-		uriVariables.put("id", String.valueOf(workerId));
-		
 		// Eviando requisição para o endpont [GET] getWorker do serviço hr-worker 
-		WorkerRequest worker = restTemplate.getForObject(workerHost + "/workers/{id}", WorkerRequest.class, uriVariables);
+		WorkerResponse worker = workerClient.findbyId(workerId).getBody();
 		
 		return new Payment(worker.getName(), worker.getDailyIncome(), days);
 	}
