@@ -23,9 +23,11 @@ public class PaymentService {
 	
 	public Payment getPayment(long workerId, int days) {
 		
+		// Mapa de variaveis
 		Map<String, String> uriVariables = new HashMap<>();
 		uriVariables.put("id", String.valueOf(workerId));
 		
+		// Eviando requisição para o endpont [GET] getWorker do serviço hr-worker 
 		WorkerRequest worker = restTemplate.getForObject(workerHost + "/workers/{id}", WorkerRequest.class, uriVariables);
 		
 		return new Payment(worker.getName(), worker.getDailyIncome(), days);
