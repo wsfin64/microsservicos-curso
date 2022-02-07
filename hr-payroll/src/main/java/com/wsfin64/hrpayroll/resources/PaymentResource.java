@@ -1,5 +1,7 @@
 package com.wsfin64.hrpayroll.resources;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wsfin64.hrpayroll.entities.Payment;
+import com.wsfin64.hrpayroll.entities.WorkerResponse;
 import com.wsfin64.hrpayroll.services.PaymentService;
 
 @RestController
@@ -21,6 +24,11 @@ public class PaymentResource {
 	public ResponseEntity<Payment> getPayment(@PathVariable Long workerId, @PathVariable Integer days){
 		Payment payment = paymentService.getPayment(workerId, days);
 		return ResponseEntity.ok(payment);
+	}
+	
+	@GetMapping("/workers")
+	public ResponseEntity<List<WorkerResponse>> getWorkers(){
+		return ResponseEntity.ok(paymentService.getWorkers());
 	}
 	
 	

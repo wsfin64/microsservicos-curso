@@ -1,6 +1,7 @@
 package com.wsfin64.hrpayroll.services;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,13 @@ public class PaymentService {
 	public Payment getPayment(long workerId, int days) {
 		
 		// Eviando requisição para o endpont [GET] getWorker do serviço hr-worker 
-		WorkerResponse worker = workerClient.findbyId(workerId).getBody();
+		WorkerResponse worker = workerClient.findWorkerById(workerId).getBody();
 		
 		return new Payment(worker.getName(), worker.getDailyIncome(), days);
+	}
+	
+	public List<WorkerResponse> getWorkers(){
+		List<WorkerResponse> workers = workerClient.listWorkers().getBody();
+		return workers;
 	}
 }
