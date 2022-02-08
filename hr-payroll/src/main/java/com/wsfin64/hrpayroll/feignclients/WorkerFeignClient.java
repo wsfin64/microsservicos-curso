@@ -1,5 +1,7 @@
 package com.wsfin64.hrpayroll.feignclients;
 
+import java.util.List;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -14,5 +16,8 @@ import com.wsfin64.hrpayroll.entities.WorkerResponse;
 public interface WorkerFeignClient {
 
 	@GetMapping(value = "/{id}")
-	ResponseEntity<WorkerResponse> findbyId(@PathVariable("id") Long id);
+	ResponseEntity<WorkerResponse> findWorkerById(@PathVariable("id") Long id);
+	
+	@GetMapping
+	ResponseEntity<List<WorkerResponse>> listWorkers();
 }
