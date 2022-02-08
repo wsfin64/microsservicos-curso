@@ -59,5 +59,9 @@ public class Payment implements Serializable {
 		return days * dailyIncome;
 	}
 	
+	public String getCompany() {
+		return "Wellington Inc.";
+	}
+	
 	
 }
