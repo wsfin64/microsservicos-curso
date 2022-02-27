@@ -22,7 +22,6 @@ public class PaymentService {
 	
 	public Payment getPayment(long workerId, int days) {
 		
-		// Eviando requisição para o endpont [GET] getWorker do serviço hr-worker 
 		WorkerResponse worker = workerClient.findWorkerById(workerId).getBody();
 		
 		return new Payment(worker.getName(), worker.getDailyIncome(), days);
